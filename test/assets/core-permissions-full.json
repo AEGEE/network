@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "data": [{
+      "scope": "global",
+      "object": "boards",
+      "id": 1,
+      "filters": [],
+      "description": "Manage boards",
+      "combined": "global:manage:boards",
+      "circles": null,
+      "action": "manage"
+    }]
+}
