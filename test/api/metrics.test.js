@@ -17,7 +17,7 @@ describe('Metrics requests', () => {
     });
 
     test('should return data correctly on /metrics', async () => {
-        await generator.createBody();
+        await generator.createBoard();
 
         const res = await request({
             uri: '/metrics',
