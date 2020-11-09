@@ -20,7 +20,7 @@ module.exports = {
         },
         end_date: {
             type: Sequelize.DATEONLY,
-            allowNull: false
+            allowNull: true
         },
         president: {
             type: Sequelize.INTEGER,
