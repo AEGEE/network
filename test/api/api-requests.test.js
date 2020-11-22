@@ -131,7 +131,6 @@ describe('API requests', () => {
     test('should fail on accessing non-existant endpoint', async () => {
         const res = await request({
             uri: '/nonexistant',
-            method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
 
