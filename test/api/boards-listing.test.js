@@ -24,7 +24,8 @@ describe('Boards listing', () => {
 
         const res = await request({
             uri: '/',
-            method: 'GET'
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
         });
 
         expect(res.statusCode).toEqual(200);
@@ -40,7 +41,8 @@ describe('Boards listing', () => {
 
         const res = await request({
             uri: '/1',
-            method: 'GET'
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
         });
 
         expect(res.statusCode).toEqual(200);
@@ -61,9 +63,10 @@ describe('Boards listing', () => {
         });
 
         const res = await request({
-          uri: '/',
-          method: 'GET'
-        })
+            uri: '/',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
 
         expect(res.statusCode).toEqual(200);
         expect(res.body.success).toEqual(true);
@@ -88,14 +91,13 @@ describe('Boards listing', () => {
             body_id: 1,
             start_date: moment().add(1, 'year').toDate()
         });
-        const other = await generator.createBoard({
-            body_id: 2
-        })
+        await generator.createBoard({ body_id: 2 });
 
         const res = await request({
-          uri: '/1',
-          method: 'GET'
-        })
+            uri: '/1',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
 
         expect(res.statusCode).toEqual(200);
         expect(res.body.success).toEqual(true);
@@ -106,6 +108,5 @@ describe('Boards listing', () => {
         expect(res.body.data[1].id).toEqual(second.id);
         expect(res.body.data[2].id).toEqual(third.id);
     });
-
 
 });
