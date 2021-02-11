@@ -1,5 +1,5 @@
-// const moment = require('moment');
-//
+const moment = require('moment');
+
 const { startServer, stopServer } = require('../../lib/server.js');
 // const { request } = require('../scripts/helpers');
 // const mock = require('../scripts/mock-core-registry');
@@ -60,7 +60,7 @@ describe('Boards listing', () => {
             start_date: moment().add(1, 'year').toDate()
         });
 
-        const res = await.request({
+        const res = await request({
           uri: '/',
           method: 'GET'
         })
@@ -92,7 +92,7 @@ describe('Boards listing', () => {
             body_id: 2
         })
 
-        const res = await.request({
+        const res = await request({
           uri: '/1',
           method: 'GET'
         })
