@@ -1,8 +1,8 @@
 const moment = require('moment');
 
 const { startServer, stopServer } = require('../../lib/server.js');
-// const { request } = require('../scripts/helpers');
-// const mock = require('../scripts/mock-core-registry');
+const { request } = require('../scripts/helpers');
+const mock = require('../scripts/mock');
 const generator = require('../scripts/generator');
 
 describe('Boards listing', () => {
@@ -29,7 +29,7 @@ describe('Boards listing', () => {
 
         expect(res.statusCode).toEqual(200);
         expect(res.body.success).toEqual(true);
-        expect(res,body).toHaveProperty('data');
+        expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(2);
     });
 
@@ -45,7 +45,7 @@ describe('Boards listing', () => {
 
         expect(res.statusCode).toEqual(200);
         expect(res.body.success).toEqual(true);
-        expect(res,body).toHaveProperty('data');
+        expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(2);
     });
 
@@ -67,7 +67,7 @@ describe('Boards listing', () => {
 
         expect(res.statusCode).toEqual(200);
         expect(res.body.success).toEqual(true);
-        expect(res,body).toHaveProperty('data');
+        expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(3);
 
         expect(res.body.data[0].id).toEqual(first.id);
@@ -99,7 +99,7 @@ describe('Boards listing', () => {
 
         expect(res.statusCode).toEqual(200);
         expect(res.body.success).toEqual(true);
-        expect(res,body).toHaveProperty('data');
+        expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(3);
 
         expect(res.body.data[0].id).toEqual(first.id);
