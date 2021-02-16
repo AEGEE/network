@@ -6,24 +6,29 @@ const mock = require('../scripts/mock');
 const generator = require('../scripts/generator');
 
 describe('Boards listing', () => {
-    beforeEach(async () => {
-        mock.mockAll();
+    beforeAll(async () => {
         await startServer();
     });
 
-    afterEach(async () => {
+    afterAll(async () => {
         await stopServer();
-        mock.cleanAll();
+    });
 
+    beforeEach(async () => {
+        mock.mockAll();
+    });
+
+    afterEach(async () => {
         await generator.clearAll();
+        mock.cleanAll();
     });
 
-    it('should list all boards on / GET', async () => {
+    test('should list all boards on / GET', async () => {
         await generator.createBoard();
         await generator.createBoard();
 
         const res = await request({
-            uri: '/',
+            uri: '/boards',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
@@ -34,13 +39,13 @@ describe('Boards listing', () => {
         expect(res.body.data.length).toEqual(2);
     });
 
-    it('should list all boards on /:body_id GET', async () => {
+    test('should list all boards on /:body_id GET', async () => {
         await generator.createBoard({ body_id: 1 });
         await generator.createBoard({ body_id: 1 });
         await generator.createBoard({ body_id: 2 });
 
         const res = await request({
-            uri: '/1',
+            uri: '/bodies/1',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
@@ -51,7 +56,7 @@ describe('Boards listing', () => {
         expect(res.body.data.length).toEqual(2);
     });
 
-    it('should sort boards properly on / GET', async () => {
+    test('should sort boards properly on / GET', async () => {
         const first = await generator.createBoard({
             start_date: moment().add(2, 'years').toDate()
         });
@@ -63,7 +68,7 @@ describe('Boards listing', () => {
         });
 
         const res = await request({
-            uri: '/',
+            uri: '/boards',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
@@ -78,7 +83,7 @@ describe('Boards listing', () => {
         expect(res.body.data[2].id).toEqual(third.id);
     });
 
-    it('should sort boards properly on /:body_id GET', async () => {
+    test('should sort boards properly on /:body_id GET', async () => {
         const first = await generator.createBoard({
             body_id: 1,
             start_date: moment().add(2, 'years').toDate()
@@ -94,7 +99,7 @@ describe('Boards listing', () => {
         await generator.createBoard({ body_id: 2 });
 
         const res = await request({
-            uri: '/1',
+            uri: '/bodies/1',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
@@ -108,5 +113,4 @@ describe('Boards listing', () => {
         expect(res.body.data[1].id).toEqual(second.id);
         expect(res.body.data[2].id).toEqual(third.id);
     });
-
 });
