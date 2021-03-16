@@ -142,11 +142,13 @@ exports.mockAll = (options = {}) => {
     nock.cleanAll();
     const omsCoreStub = exports.mockCore(options.core || {});
     const omsMainPermissionsStub = exports.mockCoreMainPermissions(options.mainPermissions || {});
+    const omsCoreBodyStub = exports.mockCoreBody(options.body || {});
     const omsMailerStub = exports.mockCoreMailer(options.mailer || {});
 
     return {
         omsCoreStub,
         omsMainPermissionsStub,
+        omsCoreBodyStub,
         omsMailerStub
     };
 };
