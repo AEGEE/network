@@ -82,6 +82,34 @@ exports.mockCoreMainPermissions = (options) => {
         .replyWithFile(200, path.join(__dirname, '..', 'assets', 'core-permissions-full.json'));
 };
 
+exports.mockCoreBody = (options) => {
+    if (options.netError) {
+        return nock(`${config.core.url}:${config.core.port}`)
+            .persist()
+            .get(/\/bodies\/[0-9].*/)
+            .replyWithError('Some random error.');
+    }
+
+    if (options.badResponse) {
+        return nock(`${config.core.url}:${config.core.port}`)
+            .persist()
+            .get(/\/bodies\/[0-9].*/)
+            .reply(500, 'Some error happened.');
+    }
+
+    if (options.unsuccessfulResponse) {
+        return nock(`${config.core.url}:${config.core.port}`)
+            .persist()
+            .get(/\/bodies\/[0-9].*/)
+            .reply(500, { success: false, message: 'Some error' });
+    }
+
+    return nock(`${config.core.url}:${config.core.port}`)
+        .persist()
+        .get(/\/bodies\/[0-9].*/)
+        .reply(200, { success: true, data: body });
+};
+
 exports.mockCoreMailer = (options) => {
     if (options.netError) {
         return nock(`${config.mailer.url}:${config.mailer.port}`)
