@@ -4,7 +4,7 @@ const mock = require('../scripts/mock');
 const generator = require('../scripts/generator');
 const { Board } = require('../../models');
 
-describe('Course deleting', () => {
+describe('Board deleting', () => {
     beforeAll(async () => {
         await startServer();
     });
