@@ -1,6 +1,3 @@
-const moment = require('moment');
-const faker = require('faker');
-
 const { startServer, stopServer } = require('../../lib/server.js');
 const { request } = require('../scripts/helpers');
 const mock = require('../scripts/mock');
@@ -48,7 +45,7 @@ describe('Board editing', () => {
             method: 'PUT',
             headers: { 'X-Auth-Token': 'blablabla' },
             body: {
-              message: 'a new text'
+                message: 'a new text'
             }
         });
 
