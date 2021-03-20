@@ -68,7 +68,7 @@ describe('Boards listing', () => {
         });
 
         const res = await request({
-            uri: '/boards',
+            uri: '/boards?sort=start_date&direction=desc',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
@@ -99,7 +99,7 @@ describe('Boards listing', () => {
         await generator.createBoard({ body_id: 2 });
 
         const res = await request({
-            uri: '/bodies/1',
+            uri: '/bodies/1?sort=start_date&direction=desc',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
