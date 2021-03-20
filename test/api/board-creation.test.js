@@ -1,4 +1,3 @@
-const moment = require('moment');
 const faker = require('faker');
 
 const { startServer, stopServer } = require('../../lib/server.js');
@@ -290,5 +289,5 @@ describe('Board creation', () => {
         expect(res.body.success).toEqual(true);
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
-    })
+    });
 });
