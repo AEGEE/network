@@ -2,6 +2,7 @@ const nock = require('nock');
 const path = require('path');
 
 const config = require('../../config');
+const body = require('../assets/core-local.json').data;
 
 exports.cleanAll = () => nock.cleanAll();
 
