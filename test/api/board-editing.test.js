@@ -41,15 +41,21 @@ describe('Board editing', () => {
     });
 
     test('should succeed if everything is okay', async () => {
-        const board = await generator.createBoard({ president: 1 });
-        const newBoard = board;
-        newBoard.president = 2;
+        const board = await generator.createBoard({ message: 'some text' });
 
-        const res = await request({
+        await request({
             uri: '/bodies/' + board.body_id + '/boards/' + board.id,
             method: 'PUT',
             headers: { 'X-Auth-Token': 'blablabla' },
-            body: newBoard
+            body: {
+              message: 'a new text'
+            }
+        });
+
+        const res = await request({
+            uri: '/bodies/' + board.body_id + '/boards/' + board.id,
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
         });
 
         expect(res.statusCode).toEqual(200);
@@ -57,6 +63,6 @@ describe('Board editing', () => {
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.id).toEqual(board.id);
-        expect(res.body.data.president).toEqual(2);
+        expect(res.body.data.message).toEqual('a new text');
     });
 });
