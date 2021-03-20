@@ -1,11 +1,12 @@
 const moment = require('moment');
+const faker = require('faker');
 
 const { startServer, stopServer } = require('../../lib/server.js');
 const { request } = require('../scripts/helpers');
 const mock = require('../scripts/mock');
 const generator = require('../scripts/generator');
 
-describe('Boards listing', () => {
+describe('Board listing', () => {
     beforeAll(async () => {
         await startServer();
     });
@@ -54,6 +55,77 @@ describe('Boards listing', () => {
         expect(res.body.success).toEqual(true);
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(2);
+    });
+
+    test('should fail if body_id is not a number', async () => {
+        const res = await request({
+            uri: 'bodies/NaN',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(400);
+        expect(res.body.success).toEqual(false);
+        expect(res.body).not.toHaveProperty('data');
+        expect(res.body).toHaveProperty('message');
+    });
+
+    test('should fail if no boards exist', async () => {
+        await generator.createBoard({ body_id: 2 });
+
+        const res = await request({
+            uri: 'bodies/1',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(404);
+        expect(res.body.success).toEqual(false);
+        expect(res.body).not.toHaveProperty('data');
+        expect(res.body).toHaveProperty('message');
+    });
+
+    test('should list current board on', async () => {
+        await generator.createBoard({ body_id: 1, start_date: faker.date.past(), end_date: faker.date.future() });
+
+        const res = await request({
+            uri: '/bodies/1/boards/current',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.success).toEqual(true);
+        expect(res.body).toHaveProperty('data');
+        expect(res.body.data.length).toEqual(1);
+    });
+
+    test('should fail if body_id current board is not a number', async () => {
+        const res = await request({
+            uri: 'bodies/NaN/boards/current',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(400);
+        expect(res.body.success).toEqual(false);
+        expect(res.body).not.toHaveProperty('data');
+        expect(res.body).toHaveProperty('message');
+    });
+
+    test('should fail if current board does not exist', async () => {
+        await generator.createBoard({ body_id: 1, start_date: faker.date.future() });
+
+        const res = await request({
+            uri: 'bodies/1/boards/current',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(404);
+        expect(res.body.success).toEqual(false);
+        expect(res.body).not.toHaveProperty('data');
+        expect(res.body).toHaveProperty('message');
     });
 
     test('should sort boards properly on / GET', async () => {
