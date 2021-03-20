@@ -7,7 +7,7 @@ const mock = require('../scripts/mock');
 const generator = require('../scripts/generator');
 const body = require('../assets/core-local.json').data;
 
-describe('Boards creation', () => {
+describe('Board creation', () => {
     beforeAll(async () => {
         await startServer();
     });
