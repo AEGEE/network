@@ -22,6 +22,9 @@ const config = {
             url: 'http://mailer',
             port: 4000
         },
+        new_board_notifications: [
+            'netcommies@aegee.eu'
+        ],
         logger: {
             silent: false,
             level: process.env.LOGLEVEL || 'info'
