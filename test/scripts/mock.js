@@ -3,6 +3,7 @@ const path = require('path');
 
 const config = require('../../config');
 const body = require('../assets/core-local.json').data;
+const user = require('../assets/core-valid.json').data;
 
 exports.cleanAll = () => nock.cleanAll();
 
@@ -111,6 +112,34 @@ exports.mockCoreBody = (options) => {
         .reply(200, { success: true, data: body });
 };
 
+exports.mockCoreMember = (options) => {
+    if (options.netError) {
+        return nock(`${config.core.url}:${config.core.port}`)
+            .persist()
+            .get(/\/members\/[0-9].*/)
+            .replyWithError('Some random error.');
+    }
+
+    if (options.badResponse) {
+        return nock(`${config.core.url}:${config.core.port}`)
+            .persist()
+            .get(/\/members\/[0-9].*/)
+            .reply(500, 'Some error happened.');
+    }
+
+    if (options.unsuccessfulResponse) {
+        return nock(`${config.core.url}:${config.core.port}`)
+            .persist()
+            .get(/\/members\/[0-9].*/)
+            .reply(500, { success: false, message: 'Some error' });
+    }
+
+    return nock(`${config.core.url}:${config.core.port}`)
+        .persist()
+        .get(/\/members\/[0-9].*/)
+        .reply(200, { success: true, data: user });
+};
+
 exports.mockCoreMailer = (options) => {
     if (options.netError) {
         return nock(`${config.mailer.url}:${config.mailer.port}`)
@@ -144,12 +173,14 @@ exports.mockAll = (options = {}) => {
     const omsCoreStub = exports.mockCore(options.core || {});
     const omsMainPermissionsStub = exports.mockCoreMainPermissions(options.mainPermissions || {});
     const omsCoreBodyStub = exports.mockCoreBody(options.body || {});
+    const omsCoreMemberStub = exports.mockCoreMember(options.member || {});
     const omsMailerStub = exports.mockCoreMailer(options.mailer || {});
 
     return {
         omsCoreStub,
         omsMainPermissionsStub,
         omsCoreBodyStub,
+        omsCoreMemberStub,
         omsMailerStub
     };
 };
