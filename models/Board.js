@@ -45,6 +45,10 @@ const Board = sequelize.define('board', {
             }
         }
     },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     president: {
         type: Sequelize.INTEGER,
         allowNull: false,
