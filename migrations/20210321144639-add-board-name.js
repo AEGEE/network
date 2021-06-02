@@ -7,5 +7,5 @@ module.exports = {
             allowNull: true
         }
     ),
-    down: (queryInterface) => queryInterface.removeColumn('boards', name)
+    down: (queryInterface) => queryInterface.removeColumn('boards', 'name')
 };
