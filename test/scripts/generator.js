@@ -15,8 +15,8 @@ exports.generateBoard = (options = {}) => {
     return options;
 };
 
-exports.createBoard = (options = {}, body) => {
-    return Board.create(exports.generateBoard(options, body));
+exports.createBoard = (options = {}) => {
+    return Board.create(exports.generateBoard(options));
 };
 
 exports.clearAll = async () => {
