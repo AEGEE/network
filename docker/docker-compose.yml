@@ -2,6 +2,7 @@ version: "3.4"
 ### NETWORK     #######################################
 services:
     postgres-network:
+        restart: always
         image: postgres:10.18
         volumes:
             - postgres-network:/var/lib/postgresql/data
@@ -12,6 +13,7 @@ services:
             POSTGRES_PASSWORD: "${PW_POSTGRES}"
 
     network:
+        restart: always
         image: aegee/network:latest
         volumes:
             - network-media:/usr/app/media

@@ -25,20 +25,6 @@ describe('Board creation', () => {
         await generator.clearAll();
     });
 
-    // test('should fail if endpoint does not exist', async () => {
-    //     const board = generator.generateBoard();
-    //
-    //     const res = await request({
-    //         uri: '/bodies/1337/boards',
-    //         method: 'POST',
-    //         body: board,
-    //         headers: { 'X-Auth-Token': 'blablabla' }
-    //     });
-    //
-    //     expect(res.statusCode).toEqual(404);
-    //     expect(res.body.success).toEqual(false);
-    // });
-
     test('should fail if no permissions', async () => {
         mock.mockAll({ mainPermissions: { noPermissions: true } });
 
