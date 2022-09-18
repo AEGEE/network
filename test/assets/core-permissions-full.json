@@ -9,5 +9,15 @@
       "combined": "global:manage_network:boards",
       "circles": null,
       "action": "manage_network"
+    },
+    {
+      "scope": "global",
+      "object": "board",
+      "id": 1,
+      "filters": [],
+      "description": "View boards in network module",
+      "combined": "global:view:board",
+      "circles": null,
+      "action": "view"
     }]
 }

@@ -24,6 +24,19 @@ describe('Board listing', () => {
         mock.cleanAll();
     });
 
+    test('should fail if no permission', async () => {
+        mock.mockAll({ mainPermissions: { noPermissions: true } });
+
+        const res = await request({
+            uri: '/boards',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(403);
+        expect(res.body.success).toEqual(false);
+    });
+
     test('should list all boards on / GET', async () => {
         await generator.createBoard();
         await generator.createBoard();
