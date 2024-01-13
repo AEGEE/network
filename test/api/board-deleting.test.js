@@ -38,7 +38,7 @@ describe('Board deleting', () => {
     });
 
     test('should succeed if everything is okay', async () => {
-        const board = await generator.createBoard();
+        const board = await generator.createBoard({ body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + board.body_id + '/boards/' + board.id,

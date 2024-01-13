@@ -42,7 +42,7 @@ describe('Board creation', () => {
     });
 
     test('should fail if elected_date is not set', async () => {
-        const board = generator.generateBoard({ elected_date: null });
+        const board = generator.generateBoard({ elected_date: null, body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -59,7 +59,7 @@ describe('Board creation', () => {
     });
 
     test('should fail if elected_date is in the future', async () => {
-        const board = generator.generateBoard({ elected_date: faker.date.future() });
+        const board = generator.generateBoard({ elected_date: faker.date.future(), body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -76,7 +76,7 @@ describe('Board creation', () => {
     });
 
     test('should fail if start_date is not set', async () => {
-        const board = generator.generateBoard({ start_date: null });
+        const board = generator.generateBoard({ start_date: null, body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -93,7 +93,7 @@ describe('Board creation', () => {
     });
 
     test('should fail if end_date is in the past', async () => {
-        const board = generator.generateBoard({ end_date: faker.date.past() });
+        const board = generator.generateBoard({ end_date: faker.date.past(), body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -110,7 +110,7 @@ describe('Board creation', () => {
     });
 
     test('should fail if image_id is not a number', async () => {
-        const board = generator.generateBoard({ image_id: 'NaN' });
+        const board = generator.generateBoard({ image_id: 'NaN', body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -128,7 +128,7 @@ describe('Board creation', () => {
 
     test('should fail if core user request returns net error', async () => {
         mock.mockAll({ member: { netError: true } });
-        const board = generator.generateBoard({ president: user.id });
+        const board = generator.generateBoard({ president: user.id, body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -144,7 +144,7 @@ describe('Board creation', () => {
 
     test('should fail if core user request returns garbage', async () => {
         mock.mockAll({ member: { badResponse: true } });
-        const board = generator.generateBoard({ president: user.id });
+        const board = generator.generateBoard({ president: user.id, body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -160,7 +160,7 @@ describe('Board creation', () => {
 
     test('should fail if core user request returns unsuccessful response', async () => {
         mock.mockAll({ member: { unsuccessfulResponse: true } });
-        const board = generator.generateBoard({ president: user.id });
+        const board = generator.generateBoard({ president: user.id, body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -223,7 +223,7 @@ describe('Board creation', () => {
     });
 
     test('should succeed if everything is okay', async () => {
-        const board = generator.generateBoard();
+        const board = generator.generateBoard({ body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',
@@ -245,7 +245,7 @@ describe('Board creation', () => {
     });
 
     test('should succeed for more positions if everything is okay', async () => {
-        const board = generator.generateBoard({ other_members: [{ function: 'Test', user_id: user.id }] });
+        const board = generator.generateBoard({ other_members: [{ function: 'Test', user_id: user.id }], body_id: 34 });
 
         const res = await request({
             uri: '/bodies/' + body.id + '/boards',

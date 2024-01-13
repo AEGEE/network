@@ -38,7 +38,7 @@ describe('Board editing', () => {
     });
 
     test('should succeed if everything is okay', async () => {
-        const board = await generator.createBoard({ message: 'some text' });
+        const board = await generator.createBoard({ message: 'some text', body_id: 34 });
 
         await request({
             uri: '/bodies/' + board.body_id + '/boards/' + board.id,
