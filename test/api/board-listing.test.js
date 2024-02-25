@@ -255,7 +255,7 @@ describe('Board listing', () => {
         });
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body.success).toEqual(200);
+        expect(res.body.success).toEqual(true);
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(1);
         expect(res.body.data[0].id).toEqual(recentBoard.id);
@@ -264,21 +264,23 @@ describe('Board listing', () => {
     test('should not list boards elected in the future', async () => {
         const formerBoard = await generator.createBoard({
             body_id: 1,
-            elected_date: moment().subtract(1, 'weeks').toDate()
+            elected_date: moment().subtract(2, 'weeks').toDate()
         });
         await generator.createBoard({
             body_id: 1,
-            elected_date: moment().add(1, 'weeks').toDate()
+            elected_date: moment().toDate()
         });
 
+        const ends = moment().subtract(1, 'weeks').toDate();
+
         const res = await request({
-            uri: '/boards/recents',
+            uri: '/boards/recents?ends=' + ends,
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body.success).toEqual(200);
+        expect(res.body.success).toEqual(true);
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(1);
         expect(res.body.data[0].id).toEqual(formerBoard.id);
