@@ -243,7 +243,7 @@ describe('Board listing', () => {
             body_id: 1,
             elected_date: moment().subtract(2, 'weeks').toDate()
         });
-        const recentBoard = await generator.createBoard({
+        const mostRecentBoard = await generator.createBoard({
             body_id: 1,
             elected_date: moment().subtract(1, 'weeks').toDate()
         });
@@ -258,6 +258,7 @@ describe('Board listing', () => {
         expect(res.body.success).toEqual(true);
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(1);
+        expect(res.body.data[0].latest_election).toEqual(mostRecentBoard.elected_date);
     });
 
     test('should not list boards elected in the future', async () => {
@@ -270,7 +271,7 @@ describe('Board listing', () => {
             elected_date: moment().toDate()
         });
 
-        const ends = moment().subtract(1, 'weeks');
+        const ends = moment().subtract(1, 'weeks').toISOString();
 
         const res = await request({
             uri: '/boards/recents?ends=' + ends,
@@ -282,5 +283,6 @@ describe('Board listing', () => {
         expect(res.body.success).toEqual(true);
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(1);
+        expect(res.body.data[0].latest_election).toEqual(formerBoard.elected_date);
     });
 });
