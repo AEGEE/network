@@ -243,15 +243,13 @@ describe('Board listing', () => {
             body_id: 1,
             elected_date: moment().subtract(2, 'weeks').toDate()
         });
-        const recent_board = await generator.createBoard({
+        const recentBoard = await generator.createBoard({
             body_id: 1,
             elected_date: moment().subtract(1, 'weeks').toDate()
         });
 
-        const ends = moment();
-
         const res = await request({
-            uri: '/boards/recents?ends=' + ends,
+            uri: '/boards/recents',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
@@ -260,23 +258,21 @@ describe('Board listing', () => {
         expect(res.body.success).toEqual(200);
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(1);
-        expect(res.body.data[0].id).toEqual(recent_board.id);
+        expect(res.body.data[0].id).toEqual(recentBoard.id);
     });
 
     test('should not list boards elected in the future', async () => {
-        const former_board = await generator.createBoard({
+        const formerBoard = await generator.createBoard({
             body_id: 1,
-            elected_date: moment().subtract(2, 'weeks').toDate()
+            elected_date: moment().subtract(1, 'weeks').toDate()
         });
         await generator.createBoard({
             body_id: 1,
-            elected_date: moment().toDate()
+            elected_date: moment().add(1, 'weeks').toDate()
         });
 
-        const ends = moment().subtract(1, 'weeks').toDate();
-
         const res = await request({
-            uri: '/boards/recents?ends=' + ends,
+            uri: '/boards/recents',
             method: 'GET',
             headers: { 'X-Auth-Token': 'blablabla' }
         });
@@ -285,6 +281,6 @@ describe('Board listing', () => {
         expect(res.body.success).toEqual(200);
         expect(res.body).toHaveProperty('data');
         expect(res.body.data.length).toEqual(1);
-        expect(res.body.data[0].id).toEqual(former_board.id);
+        expect(res.body.data[0].id).toEqual(formerBoard.id);
     });
 });
