@@ -15,8 +15,8 @@ const AntennaCriterion = sequelize.define('antennaCriterion', {
         primaryKey: true,
         type: Sequelize.INTEGER,
         validate: {
-            notEmpty: { msg: 'Body should be set. '},
-            isInt: { msg: 'Body ID should be a number. '}
+            notEmpty: { msg: 'Body should be set.' },
+            isInt: { msg: 'Body ID should be a number.' }
         }
     },
     antenna_criterion: {
