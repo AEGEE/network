@@ -18,6 +18,7 @@ describe('Antenna Criteria', () => {
 
     afterEach(async () => {
         mock.cleanAll();
+        await generator.clearAll();
     });
 
     // test('should fail listing Antenna Criteria if no permission', async () => {
@@ -93,7 +94,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(422);
-        expect(res.body.succes).toEqual(false);
+        expect(res.body.success).toEqual(false);
         expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
         expect(res.body.errors).toHaveProperty('agora_id');
@@ -110,7 +111,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(422);
-        expect(res.body.succes).toEqual(false);
+        expect(res.body.success).toEqual(false);
         expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
         expect(res.body.errors).toHaveProperty('body_id');
@@ -127,7 +128,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(422);
-        expect(res.body.succes).toEqual(false);
+        expect(res.body.success).toEqual(false);
         expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
         expect(res.body.errors).toHaveProperty('antenna_criterion');
@@ -144,7 +145,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(422);
-        expect(res.body.succes).toEqual(false);
+        expect(res.body.success).toEqual(false);
         expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
         expect(res.body.errors).toHaveProperty('antenna_criterion');
@@ -161,7 +162,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(422);
-        expect(res.body.succes).toEqual(false);
+        expect(res.body.success).toEqual(false);
         expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
         expect(res.body.errors).toHaveProperty('antenna_criterion');
@@ -178,7 +179,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body.succes).toEqual(true);
+        expect(res.body.success).toEqual(true);
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
         expect(res.body.data).toHaveProperty('agora_id');
@@ -199,7 +200,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body.succes).toEqual(true);
+        expect(res.body.success).toEqual(true);
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
         expect(res.body.data).toHaveProperty('agora_id');
@@ -220,7 +221,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body.succes).toEqual(true);
+        expect(res.body.success).toEqual(true);
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
         expect(res.body.data).toHaveProperty('agora_id');
@@ -242,7 +243,7 @@ describe('Antenna Criteria', () => {
         });
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body.succes).toEqual(true);
+        expect(res.body.success).toEqual(true);
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
         expect(res.body.data).toHaveProperty('agora_id');
