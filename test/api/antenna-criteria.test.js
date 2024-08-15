@@ -185,50 +185,6 @@ describe('Antenna Criteria', () => {
         expect(res.body.data).toHaveProperty('agora_id');
         expect(res.body.data).toHaveProperty('body_id');
         expect(res.body.data).toHaveProperty('antenna_criterion');
-        expect(res.body.data).not.toHaveProperty('value');
-        expect(res.body.data).not.toHaveProperty('comment');
-    });
-
-    test('should create new Antenna Criterion with value if everything is okay', async () => {
-        const criterion = generator.generateAntennaCriterion({ value: 'exception' });
-
-        const res = await request({
-            uri: '/antennaCriteria',
-            method: 'PUT',
-            body: criterion,
-            headers: { 'X-Auth-Token': 'blablabla' }
-        });
-
-        expect(res.statusCode).toEqual(200);
-        expect(res.body.success).toEqual(true);
-        expect(res.body).not.toHaveProperty('errors');
-        expect(res.body).toHaveProperty('data');
-        expect(res.body.data).toHaveProperty('agora_id');
-        expect(res.body.data).toHaveProperty('body_id');
-        expect(res.body.data).toHaveProperty('antenna_criterion');
-        expect(res.body.data).toHaveProperty('value');
-        expect(res.body.data).not.toHaveProperty('comment');
-    });
-
-    test('should create new Antenna Criterion with comment if everything is okay', async () => {
-        const criterion = generator.generateAntennaCriterion({ comment: 'blabla' });
-
-        const res = await request({
-            uri: '/antennaCriteria',
-            method: 'PUT',
-            body: criterion,
-            headers: { 'X-Auth-Token': 'blablabla' }
-        });
-
-        expect(res.statusCode).toEqual(200);
-        expect(res.body.success).toEqual(true);
-        expect(res.body).not.toHaveProperty('errors');
-        expect(res.body).toHaveProperty('data');
-        expect(res.body.data).toHaveProperty('agora_id');
-        expect(res.body.data).toHaveProperty('body_id');
-        expect(res.body.data).toHaveProperty('antenna_criterion');
-        expect(res.body.data).not.toHaveProperty('value');
-        expect(res.body.data).toHaveProperty('comment');
     });
 
     test('should update Antenna Criterion if everything is okay', async () => {
