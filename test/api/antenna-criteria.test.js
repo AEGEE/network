@@ -20,7 +20,7 @@ describe('Antenna Criteria', () => {
         mock.cleanAll();
     });
 
-    // test('Should fail listing Antenna Criteria if no permission', async () => {
+    // test('should fail listing Antenna Criteria if no permission', async () => {
     //     mock.mockAll({ mainPermissions: { noPermissions: true } });
 
     //     const res = await request({
@@ -33,7 +33,7 @@ describe('Antenna Criteria', () => {
     //     expect(res.body.success).toEqual(false);
     // });
 
-    test('Should list all Antenna Criteria of the selected Agora', async () => {
+    test('should list all Antenna Criteria of the selected Agora', async () => {
         await generator.createAntennaCriterion({ agora_id: 1 });
         await generator.createAntennaCriterion({ agora_id: 1 });
 
@@ -49,7 +49,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.data.length).toEqual(2);
     });
 
-    test('Should only list Antenna Criteria of the selected Agora', async () => {
+    test('should only list Antenna Criteria of the selected Agora', async () => {
         await generator.createAntennaCriterion({ agora_id: 1 });
         await generator.createAntennaCriterion({ agora_id: 1 });
         await generator.createAntennaCriterion({ agora_id: 2 });
@@ -66,7 +66,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.data.length).toEqual(2);
     });
 
-    // test('Should fail creating new Antenna Criterion if no permission', async () => {
+    // test('should fail creating new Antenna Criterion if no permission', async () => {
     //     mock.mockAll({ mainPermissions: { noPermissions: true } });
 
     //     const criterion = generator.generateAntennaCriterion();
@@ -82,7 +82,7 @@ describe('Antenna Criteria', () => {
     //     expect(res.body.success).toEqual(false);
     // });
 
-    test('Should fail creating new Antenna Criterion if agora_id is not set', async () => {
+    test('should fail creating new Antenna Criterion if agora_id is not set', async () => {
         const criterion = generator.generateAntennaCriterion({ agora_id: null });
 
         const res = await request({
@@ -99,7 +99,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.errors).toHaveProperty('agora_id');
     });
 
-    test('Should fail creating new Antenna Criterion if body_id is not set', async () => {
+    test('should fail creating new Antenna Criterion if body_id is not set', async () => {
         const criterion = generator.generateAntennaCriterion({ body_id: null });
 
         const res = await request({
@@ -116,7 +116,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.errors).toHaveProperty('body_id');
     });
 
-    test('Should fail creating new Antenna Criterion if antenna_criterion is not set', async () => {
+    test('should fail creating new Antenna Criterion if antenna_criterion is not set', async () => {
         const criterion = generator.generateAntennaCriterion({ antenna_criterion: null });
 
         const res = await request({
@@ -133,7 +133,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.errors).toHaveProperty('antenna_criterion');
     });
 
-    test('Should fail creating new Antenna Criterion if antenna_criterion is not correct', async () => {
+    test('should fail creating new Antenna Criterion if antenna_criterion is not correct', async () => {
         const criterion = generator.generateAntennaCriterion({ antenna_criterion: 'blabla' });
 
         const res = await request({
@@ -150,7 +150,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.errors).toHaveProperty('antenna_criterion');
     });
 
-    test('Should fail creating new Antenna Criterion if value is not correct', async () => {
+    test('should fail creating new Antenna Criterion if value is not correct', async () => {
         const criterion = generator.generateAntennaCriterion({ value: 'blabla' });
 
         const res = await request({
@@ -167,7 +167,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.errors).toHaveProperty('antenna_criterion');
     });
 
-    test('Should create new Antenna Criterion if everything is okay', async () => {
+    test('should create new Antenna Criterion if everything is okay', async () => {
         const criterion = generator.generateAntennaCriterion();
 
         const res = await request({
@@ -188,7 +188,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.data).not.toHaveProperty('comment');
     });
 
-    test('Should create new Antenna Criterion with value if everything is okay', async () => {
+    test('should create new Antenna Criterion with value if everything is okay', async () => {
         const criterion = generator.generateAntennaCriterion({ value: 'exception' });
 
         const res = await request({
@@ -209,7 +209,7 @@ describe('Antenna Criteria', () => {
         expect(res.body.data).not.toHaveProperty('comment');
     });
 
-    test('Should create new Antenna Criterion with comment if everything is okay', async () => {
+    test('should create new Antenna Criterion with comment if everything is okay', async () => {
         const criterion = generator.generateAntennaCriterion({ comment: 'blabla' });
 
         const res = await request({
@@ -230,9 +230,9 @@ describe('Antenna Criteria', () => {
         expect(res.body.data).toHaveProperty('comment');
     });
 
-    test('Should update Antenna Criterion if everything is okay', async () => {
-        await generator.createAntennaCriterion({ agora_id: 1, body_id: 2, antenna_criterion: 'communication', value: 'no', comment: 'No communication' });
-        const criterion = generator.generateAntennaCriterion({ agora_id: 1, body_id: 2, antenna_criterion: 'communication', value: 'yes', comment: 'They are responding!' });
+    test('should update Antenna Criterion if everything is okay', async () => {
+        await generator.createAntennaCriterion({ agora_id: 1, body_id: 2, antenna_criterion: 'communication', value: 'false', comment: 'No communication' });
+        const criterion = generator.generateAntennaCriterion({ agora_id: 1, body_id: 2, antenna_criterion: 'communication', value: 'true', comment: 'They are responding!' });
 
         const res = await request({
             uri: '/antennaCriteria',
@@ -248,11 +248,11 @@ describe('Antenna Criteria', () => {
         expect(res.body.data).toHaveProperty('agora_id');
         expect(res.body.data.agora_id).toEqual(1);
         expect(res.body.data).toHaveProperty('body_id');
-        expect(res.body.data.body_id).toEqual(2)
+        expect(res.body.data.body_id).toEqual(2);
         expect(res.body.data).toHaveProperty('antenna_criterion');
         expect(res.body.data.antenna_criterion).toEqual('communication');
         expect(res.body.data).toHaveProperty('value');
-        expect(res.body.data.value).toEqual('yes');
+        expect(res.body.data.value).toEqual('true');
         expect(res.body.data).toHaveProperty('comment');
         expect(res.body.data.comment).toEqual('They are responding!');
     });
