@@ -21,18 +21,18 @@ describe('Antenna Criteria', () => {
         await generator.clearAll();
     });
 
-    // test('should fail listing Antenna Criteria if no permission', async () => {
-    //     mock.mockAll({ mainPermissions: { noPermissions: true } });
+    test('should fail listing Antenna Criteria if no permission', async () => {
+        mock.mockAll({ mainPermissions: { noPermissions: true } });
 
-    //     const res = await request({
-    //         uri: '/antennaCriteria/1',
-    //         method: 'GET',
-    //         headers: { 'X-Auth-Token': 'blablabla' }
-    //     });
+        const res = await request({
+            uri: '/antennaCriteria/1',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
 
-    //     expect(res.statusCode).toEqual(403);
-    //     expect(res.body.success).toEqual(false);
-    // });
+        expect(res.statusCode).toEqual(403);
+        expect(res.body.success).toEqual(false);
+    });
 
     test('should list all Antenna Criteria of the selected Agora', async () => {
         await generator.createAntennaCriterion({ agora_id: 1 });
@@ -67,21 +67,53 @@ describe('Antenna Criteria', () => {
         expect(res.body.data.length).toEqual(2);
     });
 
-    // test('should fail creating new Antenna Criterion if no permission', async () => {
-    //     mock.mockAll({ mainPermissions: { noPermissions: true } });
+    test('should fail creating new Antenna Criterion if no permission', async () => {
+        mock.mockAll({ mainPermissions: { noPermissions: true } });
 
-    //     const criterion = generator.generateAntennaCriterion();
+        const criterion = generator.generateAntennaCriterion();
 
-    //     const res = await request({
-    //         uri: '/antennaCriteria',
-    //         method: 'PUT',
-    //         body: criterion,
-    //         headers: { 'X-Auth-Token': 'blablabla' }
-    //     });
+        const res = await request({
+            uri: '/antennaCriteria',
+            method: 'PUT',
+            body: criterion,
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
 
-    //     expect(res.statusCode).toEqual(403);
-    //     expect(res.body.success).toEqual(false);
-    // });
+        expect(res.statusCode).toEqual(403);
+        expect(res.body.success).toEqual(false);
+    });
+
+    test('should fail creating new Antenna Criterion if the wrong permission', async () => {
+        // TODO: Make incorrect permission
+
+        const criterion = generator.generateAntennaCriterion({ antenna_criterion: 'fulfilment report' });
+
+        const res = await request({
+            uri: '/antennaCriteria',
+            method: 'PUT',
+            body: criterion,
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(403);
+        expect(res.body.success).toEqual(false);
+    });
+
+    test('should fail giving `communication` exception if the wrong permission', async () => {
+        // TODO: Make regular communication permission
+
+        const criterion = generator.generateAntennaCriterion({ antenna_criterion: 'communication' });
+
+        const res = await request({
+            uri: '/antennaCriteria',
+            method: 'PUT',
+            body: criterion,
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(403);
+        expect(res.body.success).toEqual(false);
+    });
 
     test('should fail creating new Antenna Criterion if agora_id is not set', async () => {
         const criterion = generator.generateAntennaCriterion({ agora_id: null });
