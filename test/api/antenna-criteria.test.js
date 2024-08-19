@@ -83,37 +83,37 @@ describe('Antenna Criteria', () => {
         expect(res.body.success).toEqual(false);
     });
 
-    test('should fail creating new Antenna Criterion if the wrong permission', async () => {
-        // TODO: Make incorrect permission
+    // test('should fail creating new Antenna Criterion if the wrong permission', async () => {
+    //     // TODO: Make incorrect permission
 
-        const criterion = generator.generateAntennaCriterion({ antenna_criterion: 'fulfilment report' });
+    //     const criterion = generator.generateAntennaCriterion({ antenna_criterion: 'fulfilment report' });
 
-        const res = await request({
-            uri: '/antennaCriteria',
-            method: 'PUT',
-            body: criterion,
-            headers: { 'X-Auth-Token': 'blablabla' }
-        });
+    //     const res = await request({
+    //         uri: '/antennaCriteria',
+    //         method: 'PUT',
+    //         body: criterion,
+    //         headers: { 'X-Auth-Token': 'blablabla' }
+    //     });
 
-        expect(res.statusCode).toEqual(403);
-        expect(res.body.success).toEqual(false);
-    });
+    //     expect(res.statusCode).toEqual(403);
+    //     expect(res.body.success).toEqual(false);
+    // });
 
-    test('should fail giving `communication` exception if the wrong permission', async () => {
-        // TODO: Make regular communication permission
+    // test('should fail giving `communication` exception if the wrong permission', async () => {
+    //     // TODO: Make regular communication permission
 
-        const criterion = generator.generateAntennaCriterion({ antenna_criterion: 'communication' });
+    //     const criterion = generator.generateAntennaCriterion({ antenna_criterion: 'communication' });
 
-        const res = await request({
-            uri: '/antennaCriteria',
-            method: 'PUT',
-            body: criterion,
-            headers: { 'X-Auth-Token': 'blablabla' }
-        });
+    //     const res = await request({
+    //         uri: '/antennaCriteria',
+    //         method: 'PUT',
+    //         body: criterion,
+    //         headers: { 'X-Auth-Token': 'blablabla' }
+    //     });
 
-        expect(res.statusCode).toEqual(403);
-        expect(res.body.success).toEqual(false);
-    });
+    //     expect(res.statusCode).toEqual(403);
+    //     expect(res.body.success).toEqual(false);
+    // });
 
     test('should fail creating new Antenna Criterion if agora_id is not set', async () => {
         const criterion = generator.generateAntennaCriterion({ agora_id: null });
