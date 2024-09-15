@@ -37,6 +37,19 @@ describe('Board listing', () => {
         expect(res.body.success).toEqual(false);
     });
 
+    test('should fail for the current board of body if no permission', async () => {
+        mock.mockAll({ mainPermissions: { noPermissions: true } });
+
+        const res = await request({
+            uri: '/bodies/1/boards/current',
+            method: 'GET',
+            headers: { 'X-Auth-Token': 'blablabla' }
+        });
+
+        expect(res.statusCode).toEqual(403);
+        expect(res.body.success).toEqual(false);
+    });
+
     test('should fail for most recent elected board of all bodies if no permission', async () => {
         mock.mockAll({ mainPermissions: { noPermissions: true } });
 
