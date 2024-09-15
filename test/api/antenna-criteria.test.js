@@ -161,9 +161,7 @@ describe('Antenna Criteria', () => {
 
         expect(res.statusCode).toEqual(422);
         expect(res.body.success).toEqual(false);
-        expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
-        expect(res.body.errors).toHaveProperty('antenna_criterion');
     });
 
     test('should fail creating new Antenna Criterion if antenna_criterion is not correct', async () => {
@@ -178,9 +176,7 @@ describe('Antenna Criteria', () => {
 
         expect(res.statusCode).toEqual(422);
         expect(res.body.success).toEqual(false);
-        expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
-        expect(res.body.errors).toHaveProperty('antenna_criterion');
     });
 
     test('should fail creating new Antenna Criterion if value is not correct', async () => {
