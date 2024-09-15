@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/AEGEE/network/compare/1.1.3...1.2.0) (2024-09-15)
+
+
+### Features
+
+* **network:** add handling of Antenna Criteria ([#662](https://github.com/AEGEE/network/issues/662)) ([7bd43e1](https://github.com/AEGEE/network/commit/7bd43e1c07890b2523e57d0c32f7a90855913a39))
+
+## [1.1.3](https://github.com/AEGEE/network/compare/1.1.2...1.1.3) (2024-09-15)
+
+
+### Bug Fixes
+
+* **boards:** Also get boards without end date as current board ([#658](https://github.com/AEGEE/network/issues/658)) ([9bb1475](https://github.com/AEGEE/network/commit/9bb1475dccc3d1c51263eed0b90aba20e62dfbf6))
+
 ## [1.1.2](https://github.com/AEGEE/network/compare/1.1.1...1.1.2) (2024-01-13)
 
 
