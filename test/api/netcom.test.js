@@ -1,7 +1,8 @@
 const { startServer, stopServer } = require('../../lib/server');
 const { request } = require('../scripts/helpers');
-const mock = require('../script/mock');
+const mock = require('../scripts/mock');
 const generator = require('../scripts/generator');
+const { Netcom } = require('../../models');
 
 describe('Netcom', () => {
     beforeAll(async () => {
