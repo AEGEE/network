@@ -2,7 +2,6 @@ const { startServer, stopServer } = require('../../lib/server');
 const { request } = require('../scripts/helpers');
 const mock = require('../scripts/mock');
 const generator = require('../scripts/generator');
-const { MailComponent } = require('../../models');
 
 describe('MailComponent', () => {
     beforeAll(async () => {
@@ -54,7 +53,7 @@ describe('MailComponent', () => {
     test('should only list MailComponents of the selected Agora', async () => {
         await generator.createMailComponent({ agora_id: 1, mail_component: 'introduction' });
         await generator.createMailComponent({ agora_id: 1, mail_component: 'communication' });
-        await generator.createMailComponent({ agora_id: 2, mail_component: 'board election'});
+        await generator.createMailComponent({ agora_id: 2, mail_component: 'board election' });
 
         const res = await request({
             uri: '/mailComponent/1',

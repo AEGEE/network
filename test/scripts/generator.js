@@ -51,7 +51,7 @@ exports.generateMailComponent = (options = {}) => {
 };
 
 exports.createMailComponent = (options = {}) => {
-    return MailComponent.create(exports.generateNetcom(options));
+    return MailComponent.create(exports.generateMailComponent(options));
 };
 
 exports.clearAll = async () => {

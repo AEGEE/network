@@ -1,6 +1,6 @@
 const { Sequelize, sequelize } = require('../lib/sequelize');
 
-const MailComponent = sequelize.define('maiLComponent', {
+const MailComponent = sequelize.define('mailComponent', {
     agora_id: {
         allowNull: false,
         primaryKey: true,
