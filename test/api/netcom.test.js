@@ -150,7 +150,7 @@ describe('Netcom', () => {
             headers: { 'X-Auth-Token': 'blablabla' }
         });
 
-        expect(res.statusCode).toEqual(433);
+        expect(res.statusCode).toEqual(403);
         expect(res.body.success).toEqual(false);
     });
 

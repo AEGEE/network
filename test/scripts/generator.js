@@ -45,4 +45,5 @@ exports.createNetcom = (options = {}) => {
 exports.clearAll = async () => {
     await Board.destroy({ where: {}, truncate: { cascade: true } });
     await AntennaCriterion.destroy({ where: {}, truncate: { cascade: true } });
+    await Netcom.destroy({ where: {}, truncate: { cascade: true } });
 };
