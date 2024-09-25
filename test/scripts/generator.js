@@ -1,6 +1,6 @@
 const { faker } = require('@faker-js/faker');
 
-const { Board, AntennaCriterion, Netcom } = require('../../models');
+const { Board, AntennaCriterion, Netcom, MailComponent } = require('../../models');
 
 const notSet = (field) => typeof field === 'undefined';
 
@@ -42,8 +42,21 @@ exports.createNetcom = (options = {}) => {
     return Netcom.create(exports.generateNetcom(options));
 };
 
+exports.generateMailComponent = (options = {}) => {
+    if (notSet(options.agora_id)) options.agora_id = faker.number.int(100);
+    if (notSet(options.mail_component)) options.mail_component = faker.helpers.arrayElement(['introduction', 'communication', 'board election', 'members list', 'membership fee', 'events', 'agora attendance', 'development plan', 'fulfilment report', 'closing']);
+    if (notSet(options.text)) options.text = faker.string.alphanumeric(16);
+
+    return options;
+};
+
+exports.createMailComponent = (options = {}) => {
+    return MailComponent.create(exports.generateNetcom(options));
+};
+
 exports.clearAll = async () => {
     await Board.destroy({ where: {}, truncate: { cascade: true } });
     await AntennaCriterion.destroy({ where: {}, truncate: { cascade: true } });
     await Netcom.destroy({ where: {}, truncate: { cascade: true } });
+    await MailComponent.destroy({ where: {}, truncate: { cascade: true } });
 };

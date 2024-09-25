@@ -52,5 +52,8 @@
     },
     {
       "combined": "global:manage_network:netcom_assignment"
+    },
+    {
+      "combined": "global:manage_network:fulfilment_email"
     }]
 }
