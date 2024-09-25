@@ -1,6 +1,6 @@
 const { faker } = require('@faker-js/faker');
 
-const { Board, AntennaCriterion } = require('../../models');
+const { Board, AntennaCriterion, Netcom } = require('../../models');
 
 const notSet = (field) => typeof field === 'undefined';
 
@@ -29,6 +29,17 @@ exports.generateAntennaCriterion = (options = {}) => {
 
 exports.createAntennaCriterion = (options = {}) => {
     return AntennaCriterion.create(exports.generateAntennaCriterion(options));
+};
+
+exports.generateNetcom = (options = {}) => {
+    if (notSet(options.body_id)) options.body_id = faker.number.int(100);
+    if (notSet(options.netcom_id)) options.netcom_id = faker.number.int(100);
+
+    return options;
+};
+
+exports.createNetcom = (options = {}) => {
+    return Netcom.create(exports.generateNetcom(options));
 };
 
 exports.clearAll = async () => {
