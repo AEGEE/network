@@ -144,9 +144,9 @@ describe('MailComponent', () => {
 
         expect(res.statusCode).toEqual(422);
         expect(res.body.success).toEqual(false);
-        expect(res.body).toHaveProperty('errors');
+        expect(res.body).toHaveProperty('message');
+        expect(res.body.message).toEqual('This is not a valid mail component.');
         expect(res.body).not.toHaveProperty('data');
-        expect(res.body.errors).toHaveProperty('text');
     });
 
     test('should create new MailComponent if everything is okay', async () => {
