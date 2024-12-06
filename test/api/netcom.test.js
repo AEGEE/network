@@ -166,7 +166,8 @@ describe('Netcom', () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.success).toEqual(true);
         expect(res.body).not.toHaveProperty('errors');
-        expect(res.body).toHaveProperty('data');
+        expect(res.body).toHaveProperty('message');
+        expect(res.body.message).toEqual('NetCom assignment was deleted.');
 
         const netcomFromDB = await Netcom.findByPk(netcom.body_id);
 
