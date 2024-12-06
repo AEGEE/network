@@ -144,7 +144,7 @@ describe('MailComponent', () => {
 
         expect(res.statusCode).toEqual(422);
         expect(res.body.success).toEqual(false);
-        expect(res.body).toHaveProperty('error');
+        expect(res.body).toHaveProperty('errors');
         expect(res.body).not.toHaveProperty('data');
         expect(res.body.errors).toHaveProperty('text');
     });
