@@ -55,8 +55,5 @@
     },
     {
       "combined": "global:manage_network:fulfilment_email"
-    },
-    {
-      "combined": "global:see_background_tasks:network"
     }]
 }
