@@ -23,8 +23,8 @@ describe('sendNewBoardEmail', () => {
         expect(mailer.sendMail).not.toHaveBeenCalled();
     });
 
-    it('should not send email if not newBoard and startDate is not today', async () => {
-        const board = { startDate: moment().subtract(1, 'day').toDate() };
+    it('should not send email if not newBoard and start_date is not today', async () => {
+        const board = { start_date: moment().subtract(1, 'day').toDate() };
         Board.findByPk.mockResolvedValue(board);
 
         await sendNewBoardEmail(1, false);
@@ -33,8 +33,18 @@ describe('sendNewBoardEmail', () => {
         expect(mailer.sendMail).not.toHaveBeenCalled();
     });
 
-    it('should not send email if newBoard and endDate is before today', async () => {
-        const board = { endDate: moment().subtract(1, 'day').toDate() };
+    it('should not send email if newBoard is undefined and start_date is not today', async () => {
+        const board = { start_date: moment().subtract(1, 'day').toDate() };
+        Board.findByPk.mockResolvedValue(board);
+
+        await sendNewBoardEmail(1);
+
+        expect(Board.findByPk).toHaveBeenCalledWith(1);
+        expect(mailer.sendMail).not.toHaveBeenCalled();
+    });
+
+    it('should not send email if newBoard and end_date is before today', async () => {
+        const board = { end_date: moment().subtract(1, 'day').toDate() };
         Board.findByPk.mockResolvedValue(board);
 
         await sendNewBoardEmail(1, true);
@@ -45,8 +55,8 @@ describe('sendNewBoardEmail', () => {
 
     it('should send email with correct parameters', async () => {
         const board = {
-            startDate: moment().toDate(),
-            endDate: moment().add(1, 'day').toDate(),
+            start_date: moment().toDate(),
+            end_date: moment().add(1, 'day').toDate(),
             president: 1,
             secretary: 2,
             treasurer: 3,
@@ -70,6 +80,7 @@ describe('sendNewBoardEmail', () => {
             to: mails.map((member) => member.notification_email),
             subject: constants.MAIL_SUBJECTS.NEW_BOARD_EMAIL,
             template: 'network_board_welcome.html',
+            parameters: {}
         });
     });
 });
