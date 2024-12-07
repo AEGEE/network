@@ -95,24 +95,4 @@ const Board = sequelize.define('board', {
     updatedAt: 'updated_at'
 });
 
-Board.afterUpdate((board) => {
-    // Yeah, nasty, but prevents us from circular dependencies issues. Been there, done that.
-    // eslint-disable-next-line global-require
-    const cron = require('../lib/cron');
-
-    // Clearing the times for sending new board emails and setting them again on afterSave() (just in case).
-    // Only needed on update.
-    cron.clearJobs(cron.JOB_TYPES.NEW_BOARD_EMAIL, { id: board.id });
-});
-
-Board.afterSave((board) => {
-    // Yeah, nasty, but prevents us from circular dependencies issues. Been there, done that.
-    // eslint-disable-next-line global-require
-    const cron = require('../lib/cron');
-
-    // Schedule a deadline for sending the new board emails. If it's in the past, cron
-    // will catch it.
-    cron.addJob(cron.JOB_TYPES.NEW_BOARD_EMAIL, board.start_date, { id: board.id });
-});
-
 module.exports = Board;
