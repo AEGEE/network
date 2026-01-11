@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="91" failures="0" errors="0" time="5.982">
+  <testsuite name="Board listing" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:22" time="1.278" tests="17">
+    <testcase classname="Board listing should fail if no permission" name="Board listing should fail if no permission" time="0.033">
+    </testcase>
+    <testcase classname="Board listing should fail for the current board of body if no permission" name="Board listing should fail for the current board of body if no permission" time="0.014">
+    </testcase>
+    <testcase classname="Board listing should fail for most recent elected board of all bodies if no permission" name="Board listing should fail for most recent elected board of all bodies if no permission" time="0.013">
+    </testcase>
+    <testcase classname="Board listing should fail for all boards of body if no permission" name="Board listing should fail for all boards of body if no permission" time="0.012">
+    </testcase>
+    <testcase classname="Board listing should fail for the current board of body if no permission" name="Board listing should fail for the current board of body if no permission" time="0.011">
+    </testcase>
+    <testcase classname="Board listing should list all boards on / GET" name="Board listing should list all boards on / GET" time="0.028">
+    </testcase>
+    <testcase classname="Board listing should list all boards on /:body_id GET" name="Board listing should list all boards on /:body_id GET" time="0.024">
+    </testcase>
+    <testcase classname="Board listing should fail if body_id is not a number" name="Board listing should fail if body_id is not a number" time="0.012">
+    </testcase>
+    <testcase classname="Board listing should fail if no boards exist" name="Board listing should fail if no boards exist" time="0.016">
+    </testcase>
+    <testcase classname="Board listing should list current board on" name="Board listing should list current board on" time="0.018">
+    </testcase>
+    <testcase classname="Board listing should list current board if no end date is set" name="Board listing should list current board if no end date is set" time="0.016">
+    </testcase>
+    <testcase classname="Board listing should fail if body_id current board is not a number" name="Board listing should fail if body_id current board is not a number" time="0.011">
+    </testcase>
+    <testcase classname="Board listing should fail if current board does not exist" name="Board listing should fail if current board does not exist" time="0.016">
+    </testcase>
+    <testcase classname="Board listing should sort boards properly on / GET" name="Board listing should sort boards properly on / GET" time="0.024">
+    </testcase>
+    <testcase classname="Board listing should sort boards properly on /:body_id GET" name="Board listing should sort boards properly on /:body_id GET" time="0.025">
+    </testcase>
+    <testcase classname="Board listing should list only most recently elected board" name="Board listing should list only most recently elected board" time="0.019">
+    </testcase>
+    <testcase classname="Board listing should not list boards elected in the future" name="Board listing should not list boards elected in the future" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="Board creation" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:23" time="0.827" tests="14">
+    <testcase classname="Board creation should fail if no permissions" name="Board creation should fail if no permissions" time="0.023">
+    </testcase>
+    <testcase classname="Board creation should fail if elected_date is not set" name="Board creation should fail if elected_date is not set" time="0.027">
+    </testcase>
+    <testcase classname="Board creation should fail if elected_date is in the future" name="Board creation should fail if elected_date is in the future" time="0.027">
+    </testcase>
+    <testcase classname="Board creation should fail if start_date is not set" name="Board creation should fail if start_date is not set" time="0.026">
+    </testcase>
+    <testcase classname="Board creation should fail if end_date is in the past" name="Board creation should fail if end_date is in the past" time="0.025">
+    </testcase>
+    <testcase classname="Board creation should fail if image_id is not a number" name="Board creation should fail if image_id is not a number" time="0.024">
+    </testcase>
+    <testcase classname="Board creation should fail if core user request returns net error" name="Board creation should fail if core user request returns net error" time="0.019">
+    </testcase>
+    <testcase classname="Board creation should fail if core user request returns garbage" name="Board creation should fail if core user request returns garbage" time="0.019">
+    </testcase>
+    <testcase classname="Board creation should fail if core user request returns unsuccessful response" name="Board creation should fail if core user request returns unsuccessful response" time="0.019">
+    </testcase>
+    <testcase classname="Board creation should fail if core body request returns net error" name="Board creation should fail if core body request returns net error" time="0.013">
+    </testcase>
+    <testcase classname="Board creation should fail if core body request returns garbage" name="Board creation should fail if core body request returns garbage" time="0.016">
+    </testcase>
+    <testcase classname="Board creation should fail if core body request returns unsuccessful response" name="Board creation should fail if core body request returns unsuccessful response" time="0.015">
+    </testcase>
+    <testcase classname="Board creation should succeed if everything is okay" name="Board creation should succeed if everything is okay" time="0.155">
+    </testcase>
+    <testcase classname="Board creation should succeed for more positions if everything is okay" name="Board creation should succeed for more positions if everything is okay" time="0.042">
+    </testcase>
+  </testsuite>
+  <testsuite name="Antenna Criteria" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:24" time="0.525" tests="11">
+    <testcase classname="Antenna Criteria should fail listing Antenna Criteria if no permission" name="Antenna Criteria should fail listing Antenna Criteria if no permission" time="0.018">
+    </testcase>
+    <testcase classname="Antenna Criteria should list all Antenna Criteria of the selected Agora" name="Antenna Criteria should list all Antenna Criteria of the selected Agora" time="0.031">
+    </testcase>
+    <testcase classname="Antenna Criteria should only list Antenna Criteria of the selected Agora" name="Antenna Criteria should only list Antenna Criteria of the selected Agora" time="0.023">
+    </testcase>
+    <testcase classname="Antenna Criteria should fail creating new Antenna Criterion if no permission" name="Antenna Criteria should fail creating new Antenna Criterion if no permission" time="0.015">
+    </testcase>
+    <testcase classname="Antenna Criteria should fail creating new Antenna Criterion if agora_id is not set" name="Antenna Criteria should fail creating new Antenna Criterion if agora_id is not set" time="0.012">
+    </testcase>
+    <testcase classname="Antenna Criteria should fail creating new Antenna Criterion if body_id is not set" name="Antenna Criteria should fail creating new Antenna Criterion if body_id is not set" time="0.012">
+    </testcase>
+    <testcase classname="Antenna Criteria should fail creating new Antenna Criterion if antenna_criterion is not set" name="Antenna Criteria should fail creating new Antenna Criterion if antenna_criterion is not set" time="0.013">
+    </testcase>
+    <testcase classname="Antenna Criteria should fail creating new Antenna Criterion if antenna_criterion is not correct" name="Antenna Criteria should fail creating new Antenna Criterion if antenna_criterion is not correct" time="0.011">
+    </testcase>
+    <testcase classname="Antenna Criteria should fail creating new Antenna Criterion if value is not correct" name="Antenna Criteria should fail creating new Antenna Criterion if value is not correct" time="0.019">
+    </testcase>
+    <testcase classname="Antenna Criteria should create new Antenna Criterion if everything is okay" name="Antenna Criteria should create new Antenna Criterion if everything is okay" time="0.017">
+    </testcase>
+    <testcase classname="Antenna Criteria should update Antenna Criterion if everything is okay" name="Antenna Criteria should update Antenna Criterion if everything is okay" time="0.021">
+    </testcase>
+  </testsuite>
+  <testsuite name="MailComponent" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:25" time="0.53" tests="10">
+    <testcase classname="MailComponent should fail listing MailComponents if no permission" name="MailComponent should fail listing MailComponents if no permission" time="0.021">
+    </testcase>
+    <testcase classname="MailComponent should list MailComponents of the selected Agora" name="MailComponent should list MailComponents of the selected Agora" time="0.032">
+    </testcase>
+    <testcase classname="MailComponent should only list MailComponents of the selected Agora" name="MailComponent should only list MailComponents of the selected Agora" time="0.024">
+    </testcase>
+    <testcase classname="MailComponent should fail creating new MailComponent if no permission" name="MailComponent should fail creating new MailComponent if no permission" time="0.015">
+    </testcase>
+    <testcase classname="MailComponent should fail creating new MailComponent if agora_id is not set" name="MailComponent should fail creating new MailComponent if agora_id is not set" time="0.013">
+    </testcase>
+    <testcase classname="MailComponent should fail creating new MailComponent if mail_component is not set" name="MailComponent should fail creating new MailComponent if mail_component is not set" time="0.013">
+    </testcase>
+    <testcase classname="MailComponent should fail creating new MailComponent if mail_component is not correct" name="MailComponent should fail creating new MailComponent if mail_component is not correct" time="0.021">
+    </testcase>
+    <testcase classname="MailComponent should fail creating new MailComponent if text is not set" name="MailComponent should fail creating new MailComponent if text is not set" time="0.013">
+    </testcase>
+    <testcase classname="MailComponent should create new MailComponent if everything is okay" name="MailComponent should create new MailComponent if everything is okay" time="0.029">
+    </testcase>
+    <testcase classname="MailComponent should update existing MailComponent if everything is okay" name="MailComponent should update existing MailComponent if everything is okay" time="0.026">
+    </testcase>
+  </testsuite>
+  <testsuite name="Netcom" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:25" time="0.489" tests="9">
+    <testcase classname="Netcom should fail listing Netcom assignment if no permission" name="Netcom should fail listing Netcom assignment if no permission" time="0.019">
+    </testcase>
+    <testcase classname="Netcom should list Netcom assignment if everything is okay" name="Netcom should list Netcom assignment if everything is okay" time="0.019">
+    </testcase>
+    <testcase classname="Netcom should fail creating Netcom assignment if no permission" name="Netcom should fail creating Netcom assignment if no permission" time="0.014">
+    </testcase>
+    <testcase classname="Netcom should fail creating Netcom assignment if body_id is not set" name="Netcom should fail creating Netcom assignment if body_id is not set" time="0.013">
+    </testcase>
+    <testcase classname="Netcom should fail creating Netcom assignment if netcom_id is not set" name="Netcom should fail creating Netcom assignment if netcom_id is not set" time="0.014">
+    </testcase>
+    <testcase classname="Netcom should create new Netcom assignment if everything is okay" name="Netcom should create new Netcom assignment if everything is okay" time="0.018">
+    </testcase>
+    <testcase classname="Netcom should update existing Netcom assignment if everything is okay" name="Netcom should update existing Netcom assignment if everything is okay" time="0.021">
+    </testcase>
+    <testcase classname="Netcom should fail deleting Netcom assignment if no permission" name="Netcom should fail deleting Netcom assignment if no permission" time="0.026">
+    </testcase>
+    <testcase classname="Netcom should delete Netcom assignment if everything is okay" name="Netcom should delete Netcom assignment if everything is okay" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="API requests" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:26" time="0.384" tests="9">
+    <testcase classname="API requests should fail if X-Auth-Token is not specified" name="API requests should fail if X-Auth-Token is not specified" time="0.225">
+    </testcase>
+    <testcase classname="API requests should fail if core returns net error while fetching user" name="API requests should fail if core returns net error while fetching user" time="0.009">
+    </testcase>
+    <testcase classname="API requests should fail if core returns garbage while fetching user" name="API requests should fail if core returns garbage while fetching user" time="0.012">
+    </testcase>
+    <testcase classname="API requests should fail if core returns unsuccessful response while fetching user" name="API requests should fail if core returns unsuccessful response while fetching user" time="0.014">
+    </testcase>
+    <testcase classname="API requests should fail if core returns net error while fetching permissions" name="API requests should fail if core returns net error while fetching permissions" time="0.007">
+    </testcase>
+    <testcase classname="API requests should fail if core returns garbage while fetching permissions" name="API requests should fail if core returns garbage while fetching permissions" time="0.014">
+    </testcase>
+    <testcase classname="API requests should fail if core returns unsuccessful response while fetching permissions" name="API requests should fail if core returns unsuccessful response while fetching permissions" time="0.012">
+    </testcase>
+    <testcase classname="API requests should fail if body is not JSON" name="API requests should fail if body is not JSON" time="0.006">
+    </testcase>
+    <testcase classname="API requests should fail on accessing non-existant endpoint" name="API requests should fail on accessing non-existant endpoint" time="0.013">
+    </testcase>
+  </testsuite>
+  <testsuite name="sendNewBoardEmail" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:26" time="0.126" tests="5">
+    <testcase classname="sendNewBoardEmail should not send email if board is not found" name="sendNewBoardEmail should not send email if board is not found" time="0.001">
+    </testcase>
+    <testcase classname="sendNewBoardEmail should not send email if not newBoard and start_date is not today" name="sendNewBoardEmail should not send email if not newBoard and start_date is not today" time="0">
+    </testcase>
+    <testcase classname="sendNewBoardEmail should not send email if newBoard is undefined and start_date is not today" name="sendNewBoardEmail should not send email if newBoard is undefined and start_date is not today" time="0">
+    </testcase>
+    <testcase classname="sendNewBoardEmail should not send email if newBoard and end_date is before today" name="sendNewBoardEmail should not send email if newBoard and end_date is before today" time="0">
+    </testcase>
+    <testcase classname="sendNewBoardEmail should send email with correct parameters" name="sendNewBoardEmail should send email with correct parameters" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Board details" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:26" time="0.405" tests="4">
+    <testcase classname="Board details should fail if no permission" name="Board details should fail if no permission" time="0.036">
+    </testcase>
+    <testcase classname="Board details should succeed if everything is okay" name="Board details should succeed if everything is okay" time="0.022">
+    </testcase>
+    <testcase classname="Board details should fail if board is not found" name="Board details should fail if board is not found" time="0.023">
+    </testcase>
+    <testcase classname="Board details should fail if board id is not a number" name="Board details should fail if board id is not a number" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="Board deleting" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:27" time="0.402" tests="3">
+    <testcase classname="Board deleting should fail if no permission" name="Board deleting should fail if no permission" time="0.038">
+    </testcase>
+    <testcase classname="Board deleting should succeed if everything is okay" name="Board deleting should succeed if everything is okay" time="0.023">
+    </testcase>
+    <testcase classname="Board deleting should fail if board is not found" name="Board deleting should fail if board is not found" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="Board editing" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:27" time="0.408" tests="2">
+    <testcase classname="Board editing should fail if no permission" name="Board editing should fail if no permission" time="0.045">
+    </testcase>
+    <testcase classname="Board editing should succeed if everything is okay" name="Board editing should succeed if everything is okay" time="0.046">
+    </testcase>
+  </testsuite>
+  <testsuite name="Mailer" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:27" time="0.065" tests="4">
+    <testcase classname="Mailer should fail if mailer returns net error" name="Mailer should fail if mailer returns net error" time="0.012">
+    </testcase>
+    <testcase classname="Mailer should fail if mailer returns bad response" name="Mailer should fail if mailer returns bad response" time="0.006">
+    </testcase>
+    <testcase classname="Mailer should fail if mailer returns unsuccessful response" name="Mailer should fail if mailer returns unsuccessful response" time="0.006">
+    </testcase>
+    <testcase classname="Mailer should not fail if there are no errors" name="Mailer should not fail if there are no errors" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Metrics requests" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:27" time="0.317" tests="2">
+    <testcase classname="Metrics requests should return data correctly on /metrics" name="Metrics requests should return data correctly on /metrics" time="0.205">
+    </testcase>
+    <testcase classname="Metrics requests should return data correctly on /metrics/requests" name="Metrics requests should return data correctly on /metrics/requests" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="Cron Job Tests" errors="0" failures="0" skipped="0" timestamp="2026-01-11T11:45:28" time="0.116" tests="1">
+    <testcase classname="Cron Job Tests sendAllEmails should fetch all boards and send emails" name="Cron Job Tests sendAllEmails should fetch all boards and send emails" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>
